@@ -5,14 +5,19 @@ Offline Bitcoin Wallet - using pure OpenSSL and Linux to create transaction sign
 
 Just as a teaser, allow us to introduce this framework in 'memento' style, going backwards in time:<br/>
 At the end of the day, we were able to broadcast our manually crafted transaction into the blockchain by pasting it into blockchain.com:<br/>
-![pushtx](/images/blockchain.com-pushtx.png)<br/>
+![pushtx](/images/blockchain.info-pushtx.png)<br/>
+The above was the success message indicating that the submitted signature had been accepted. Here's the submission form with the bytes in hex format that we had been pasting:<br/>
+![pushtx](/images/blockchain.com-btc-pushtx.png)<br/>
+
 <br/>
 The characteristics of the transaction were the following:<br/>
+
 - P2PKH (pay to public key hash)
 - single unspent transaction output (utxo) as input to the current transaction
 - multiple target addresses in compressed public key hash format
+
 <br/>
-Before broadcasting the transaction, we had verified it using blockchain.com's convenient "decode-tx" feature:<br/>
+Notice the "tip" in the upper part of the "Broadcast transaction" screen: Of course we had taken the chance to conveniently verify our decoded transaction details before submission.<br/>
 <br/>
 
 ## Objective
