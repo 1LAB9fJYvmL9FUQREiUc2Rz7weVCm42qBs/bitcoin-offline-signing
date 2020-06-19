@@ -14,10 +14,11 @@ The characteristics of the transaction were the following:<br/>
 <br/>
 Before broadcasting the transaction, we verified it using blockchain.com's convenient "decode-tx" feature:<br/>
 <br/>
-## Objective<br/>
+
+## Objective
 
 Inspired by a popular [bitcoin.stackexchange.com thread](https://bitcoin.stackexchange.com/questions/32628/redeeming-a-raw-transaction-step-by-step-example-required) we wanted to understand P2PKH transactions down to the byte level.<br/>
-The goal was to create some automated scripts that would let us parameterize and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
+The goal was to (as an academic exercise) create some automated scripts that would let us parameterize and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
 <br/>
 ## Trust and constraints
 
@@ -27,11 +28,12 @@ Your assets will only be safe if all of the following conditions are met:<br/>
 - nobody except you (and the people that you fully trust) will _ever_ be able to see or otherwise copy your private key
 - nobody except you (and the people that you fully trust) will _ever_ be able to _guess_ your private key
 <br/>
-While you can manage the first 2 conditions with discipline (and the help of paper wallets and "cutting the wire" of your sytem) quite well, the 3rd condition arises as a question of _trust_ towards the software that you use:<br/>
-When secret keys are generated, we need the guarantee that the source of it is entropy (fully unpredictable bit streams). In case that a software/hardware combination had a backdoor that rendered that data generation more predictable, resulting in a pool of far less possibilities, guessing the privatethe pool of 2ˆ256 possibilities (for a 32-byte bitcoin private key) would be reduced to a 
-Ideally, you would only trust software that you have fully _reviewed_ and understood, which is far from realistic even on our most secure system (which is Linux) with more lines of code than you can read of review in a lifetime. On the other hand, we make a tradeoff every day by using the system, out of the need that we have to trust _something_.<br/>
+While the first 2 conditions are manageable with discipline (by "cutting the wire" of your system and with the help of paper wallets), the 3rd condition arises as a question of _trust_ towards the software that you use:<br/>
+When secret keys are generated, we need the guarantee that the source of it is _entropy_ (fully unpredictable bit streams). In case that a software/hardware combination had a backdoor that rendered "random" data generation more predictable, then guessing the private key could become feasible because the pool of 2ˆ256 possibilities (for a 32-byte bitcoin private key with uncompromised entropy) would be reduced to a much smaller pool which could make bruteforcing possible.<br/>
 <br/>
-As a consequence, we came up with a constraint list which focused on the avoidance of additional bitcoin libraries.<br/>
+Ideally, you would only trust software that you have fully _reviewed_ and understood, which is far from realistic even on our favourite system (which is Linux) with more lines of code than you can read of review in a lifetime. On the other hand, we make a tradeoff every day by using that system, out of the need that we have to trust _something_.<br/>
+<br/>
+As a consequence of the academic nature of our little project and the before mentioned security considerations, we came up with a __*constraint list*__ which focused on the avoidance of additional bitcoin libraries.<br/>
 As per this list, we were allowed to use:<br/>
 - OpenSSL as the _only_ cryptography library (which we use everyday anyway)<br/>
 - standard tools available on most Linux systems
