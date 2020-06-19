@@ -62,7 +62,7 @@ The characteristics of the transaction are the following:
 
 <br/>
 Going further back in time: How did we create the transaction signature in the first place?<br/>
-Answer: For a detailed usage example, see ![USAGE.md](USAGE.md)<br/>
+Answer: For a detailed usage example, see [USAGE.md](./USAGE.md) <br/>
 
 
 ## Objective
