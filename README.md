@@ -18,7 +18,8 @@ Before broadcasting the transaction, we had verified it using blockchain.com's c
 ## Objective
 
 Inspired by a popular [bitcoin.stackexchange.com thread](https://bitcoin.stackexchange.com/questions/32628/redeeming-a-raw-transaction-step-by-step-example-required) we wanted to understand P2PKH transactions down to the byte level.<br/>
-The goal was to (as an academic exercise) create some automated scripts that would let us parameterize and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
+We soon discovered that the topic of the stackexchange thread had its restrictions as it only described a transaction to a _single_ output.<br/>
+As an academic exercise, our goal was to create some automated bash scripts that would let us parameterize _multiple_ outputs (think of change addresses for example) and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
 
 ## Trust and constraints
 
@@ -35,11 +36,16 @@ When secret keys are generated, we need the guarantee that the source of it is _
 <br/>
 Ideally, you would only trust software that you have fully _reviewed_ and understood, which is far from realistic, considering that our favourite Linux system has been compiled from more lines of code than either one of us could read or review in a lifetime. On the other hand, for open-source systems it's the community that is always free to review the code and keep the software quality and reliability on a high level. To make a long story short, we make a tradeoff every day by _using_ our system, out of the need that we have to trust _something_.<br/>
 <br/>
-As a consequence of the academic nature of our little project and the before mentioned security considerations, we came up with a __*constraint list*__ which focused on the avoidance of additional bitcoin libraries.<br/>
+As a consequence of the academic nature of our little project and the before mentioned security considerations, we came up with a __*constraint list*__ which focuses on the avoidance of additional bitcoin libraries.<br/>
 As per this list, we were allowed to use:<br/>
 - OpenSSL as the _only_ cryptography library (we use it on a day-to-day basis anyway)<br/>
 - standard tools available on most Linux systems<br/>
-- as an additional constaint, private keys were _not_ supposed to ever reside on an online system, so we had two systems and their associated scripts in mind, one online sytem and one offline system.<br/>
+- as an additional constaint, private keys were _not_ supposed to ever reside on an online system
+
+## Design
+
+Given the before mentioned _constaint list_, we came up with a design that has _two_ systems and their associated scripts in mind, one __*online sytem*__ and one __*offline system*__.<br/>
+This is reflected in the folder structure, with the scripts that deal with __*private keys*__ _only_ being available underneath the _offline_ folder.
 
 ## Restrictions and disadvantages
 
