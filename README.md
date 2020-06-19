@@ -10,13 +10,6 @@ The above was the success message indicating that the submitted signature had be
 ![pushtx](/images/blockchain.com-btc-pushtx.png)<br/>
 
 <br/>
-The characteristics of the transaction were the following:<br/>
-
-- P2PKH (pay to public key hash)
-- single unspent transaction output (utxo) as input to the current transaction
-- multiple target addresses in compressed public key hash format
-
-<br/>
 Notice the "tip" in the upper part of the "Broadcast transaction" screen: Of course we had taken the chance to conveniently verify our decoded transaction details before submission. Here's the decoded transaction:<br/>
 
     {
@@ -60,17 +53,23 @@ Notice the "tip" in the upper part of the "Broadcast transaction" screen: Of cou
       "txid": "180d08561d4f85e22bfcde890a17f353250c302e995042a1e42b226984e3e9da"
     }
 
-As you can see, this is a P2PKH transaction with one outpoint from the previous transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_, sending a couple of satoshis to 2 separate recipient addresses _1FaqXRmQiYyGizWS9fK3GN6Y9GeSxPyRt1_ and _1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm_.<br/>
+As you can see, this is a transaction sending a couple of satoshis to 2 separate recipient addresses.<br/>
+The characteristics of the transaction are the following:
+
+- P2PKH (pay to public key hash)
+- single unspent transaction output (utxo) of the previous transaction (_127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_)
+- multiple target addresses (_1FaqXRmQiYyGizWS9fK3GN6Y9GeSxPyRt1_ and _1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm_) in compressed public key hash format
+
 <br/>
 Going further back in time: How did we create the transaction signature in the first place?<br/>
-For a detailed usage example, see ![USAGE.md](USAGE.md)<br/>
+Answer: For a detailed usage example, see ![USAGE.md](USAGE.md)<br/>
 
 
 ## Objective
 
 Inspired by a popular [bitcoin.stackexchange.com thread](https://bitcoin.stackexchange.com/questions/32628/redeeming-a-raw-transaction-step-by-step-example-required) we wanted to understand P2PKH transactions down to the byte level.<br/>
-We soon discovered that the topic of the stackexchange thread had its restrictions as it only described a transaction to a _single_ output.<br/>
-As an academic exercise, our goal was to create some automated bash scripts that would let us parameterize _multiple_ outputs (think of change addresses for example) and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
+We soon discovered that the topic of the stackexchange thread had its functional restrictions because it only described a transaction to a _single_ output in uncompressed format.<br/>
+As an academic exercise, our goal was to create some automated _bash_ scripts that would let us parameterize _multiple_ outputs (think of change addresses for example) and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
 
 ## Trust and constraints
 
@@ -81,8 +80,7 @@ Your assets will only be safe if all of the following conditions are met:<br/>
 - nobody except you (and the people that you fully trust) will _ever_ be able to see or otherwise copy your private key
 - nobody except you (and the people that you fully trust) will _ever_ be able to _guess_ your private key
 
-
-While the first 2 conditions are manageable with discipline, (by "cutting the wire" of your system and with the help of paper wallets), the 3rd condition arises as a question of _trust_ towards the software that you use:<br/>
+While the first 2 conditions are manageable with personal discipline, (e.g. by "cutting the wire" of your system and with the help of paper wallets), the 3rd condition arises as a question of _trust_ towards the software that you use:<br/>
 When secret keys are generated, we need the guarantee that the source of it is _entropy_ (fully unpredictable bit streams). In case that a software/hardware combination had a backdoor that rendered "random" data generation more predictable, then guessing the private key could become feasible because the pool of 2ˆ256 possibilities (for a 32-byte bitcoin private key with uncompromised entropy) would be reduced to a much smaller pool which could make bruteforcing possible.<br/>
 <br/>
 Ideally, you would only trust software that you have fully _reviewed_ and understood, which is far from realistic, considering that our favourite Linux system has been compiled from more lines of code than either one of us could read or review in a lifetime. On the other hand, for open-source systems it's the community that is always free to review the code and keep the software quality and reliability on a high level. To make a long story short, we make a tradeoff every day by _using_ our system, out of the need that we have to trust _something_.<br/>
