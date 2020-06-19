@@ -3,23 +3,23 @@ Offline Bitcoin Wallet - using pure OpenSSL and Linux to create transaction sign
 
 ## Intro
 
-Just as a teaser, allow us to introduce this framework in memento style:<br/>
-At the end of the day, we we were able to broadcast our manually crafted transaction into the blockchain by pasting it into blockchain.com:<br/>
-![pushtx](/images/blockchain.com-pushtx.png)
+Just as a teaser, allow us to introduce this framework in 'memento' style, going backwards in time:<br/>
+At the end of the day, we were able to broadcast our manually crafted transaction into the blockchain by pasting it into blockchain.com:<br/>
+![pushtx](/images/blockchain.com-pushtx.png)<br/>
 <br/>
 The characteristics of the transaction were the following:<br/>
 - P2PKH (pay to public key hash)
 - single unspent transaction output (utxo) as input to the current transaction
 - multiple target addresses in compressed public key hash format
 <br/>
-Before broadcasting the transaction, we verified it using blockchain.com's convenient "decode-tx" feature:<br/>
+Before broadcasting the transaction, we had verified it using blockchain.com's convenient "decode-tx" feature:<br/>
 <br/>
 
 ## Objective
 
 Inspired by a popular [bitcoin.stackexchange.com thread](https://bitcoin.stackexchange.com/questions/32628/redeeming-a-raw-transaction-step-by-step-example-required) we wanted to understand P2PKH transactions down to the byte level.<br/>
 The goal was to (as an academic exercise) create some automated scripts that would let us parameterize and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
-<br/>
+
 ## Trust and constraints
 
 In terms of security, cryptocurrencies have a weak spot which is their private key.<br/>
@@ -36,7 +36,7 @@ Ideally, you would only trust software that you have fully _reviewed_ and unders
 As a consequence of the academic nature of our little project and the before mentioned security considerations, we came up with a __*constraint list*__ which focused on the avoidance of additional bitcoin libraries.<br/>
 As per this list, we were allowed to use:<br/>
 - OpenSSL as the _only_ cryptography library (which we use everyday anyway)<br/>
-- standard tools available on most Linux systems
+- standard tools available on most Linux systems<br/>
 - as an additional constaint, private keys were _not_ supposed to ever reside on an online system, so we had two systems and their associated scripts in mind, one online sytem and one offline system.<br/>
 
 
