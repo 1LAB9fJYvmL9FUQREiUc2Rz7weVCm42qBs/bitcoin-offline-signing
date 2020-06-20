@@ -27,8 +27,9 @@ Note: _Never disclose any representation of your private key online as we do her
     BTC Address: ---------------------------------------
     1223jiRFLt4yefzPVit5MzvoBtacGwLjVy 
 
-The _entropy_ passed into the key generation script gets 256 bits of random data from /dev/random, which gets the data from the entropy pool of the Linux kernel.<br/>
+The _entropy_ piped into the key generation script gets 256 bits of random data from /dev/random, which gets the data from the entropy pool of the Linux kernel.<br/>
 There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses).<br/>
+<br/>
 With our next transaction in mind, we created 2 new key pairs using the very same approach:<br/>
 
     ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
@@ -56,7 +57,7 @@ __*It is your responsibility to keep the private keys safe, your assets will be 
 
 On the __*online*__ computer, we decided to spend the output (associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_) of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
-[previous transaction](images/blockchain.com-tx-127...png)
+![previous transaction](images/blockchain.com-tx-127...png)
 <br/>
 With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
 Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
