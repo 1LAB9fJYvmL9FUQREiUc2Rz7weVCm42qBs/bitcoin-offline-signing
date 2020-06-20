@@ -55,7 +55,9 @@ __*It is your responsibility to keep the private keys safe, your assets will be 
 
 On the __*online*__ computer, we decided to spend the output (associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_) of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
-With this information, and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
+[previous_transaction](images/blockchain.com-tx-127...png)
+<br/>
+With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
 Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
 
     ~/bitcoin$  ONLINE/sign.sh tx/template.xml 
