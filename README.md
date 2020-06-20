@@ -10,6 +10,8 @@ The above was the success message indicating that the submitted signature had be
 ![pushtx](/images/blockchain.com-btc-pushtx.png)<br/>
 
 <br/>
+<sup>In case that you're a newbie to blockchain technology, we want to avoid a misunderstanding of the site blockchain.com:<br/>
+It is just one of MANY blockchain explorers that lets you query data of the public decentralized blockchain.<br/></sup>
 Notice the "tip" in the upper part of the "Broadcast transaction" screen: Of course we had taken the chance to conveniently verify our decoded transaction details before submission. Here's the decoded transaction:<br/>
 
     {
@@ -62,7 +64,7 @@ The characteristics of the transaction are the following:
 
 <br/>
 Going further back in time: How did we create the transaction signature in the first place?<br/>
-Answer: For a detailed usage example, see [USAGE.md](./USAGE.md) <br/>
+Answer: For a detailed usage example, see [USAGE.md](USAGE.md) <br/>
 
 
 ## Objective
