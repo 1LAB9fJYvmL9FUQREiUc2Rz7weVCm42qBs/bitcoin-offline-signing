@@ -2,7 +2,7 @@
 
 ## OFFLINE
 
-On the _offline_ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them in a bunch of formats.<br/>
+On the _offline_ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them into a bunch of formats.<br/>
 Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:<br/>
 Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
 
@@ -55,12 +55,12 @@ __*It is your responsibility to keep the private keys safe, your assets will be 
 
 ## ONLINE
 
-On the __*online*__ computer, we decided to spend the output (associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_) of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
+On the __*online*__ computer, we decided to spend the output associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_  in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
 ![previous transaction](images/blockchain.com-tx-127...png)
 <br/>
-With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
-Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
+With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template _tx/template.xml_ as a parameter.<br/>
+Please note the interactive "_Enter xyz..._" questions that the script poses, and the answers that we've given:<br/>
 
     ~/bitcoin$  ONLINE/sign.sh tx/template.xml 
     Enter the transaction ID (txid) of the outpoint that you want to spend from: 127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f
@@ -185,8 +185,9 @@ Notice that the output of the script is a new xml file, containing the filled-ou
 ## OFFLINE
 
 By means of USB drive or similar, we transfered the xml file created on the online computer to our __*offline*__ computer.<br/>
+Now it was time to _prove ownership_ of address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_, which is generally done by signing the raw transaction structure with the corresponding private key.<br/>
 The private key information is stored on the __*offline*__ computer, giving us the opportunity to pipe the private key WIF into our script _offline/sign.sh_, passing the xml file as an argument.<br/>
-See the script do its thing:<br/>
+See how the script did its thing:<br/>
 
     ~/bitcoin$  <<<KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7 offline/sign.sh /tmp/tmp.EUK5kzW5Ep
     Press ctrl-d when you are done entering the private key in wallet input format (ignore this message if you have piped the private key through STDIN)
