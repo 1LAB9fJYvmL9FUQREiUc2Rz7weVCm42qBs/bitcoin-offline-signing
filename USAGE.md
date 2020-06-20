@@ -1,8 +1,8 @@
 # Usage
 
-## OFFLINE
+## OFFLINE: Generating bitcoin addresses
 
-On the _offline_ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them into a bunch of formats.<br/>
+On the __*offline*__ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them into a bunch of formats.<br/>
 Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:<br/>
 Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
 
@@ -51,15 +51,15 @@ With our next transaction in mind, we created 2 new key pairs using the very sam
     1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm
 
 Note: It is crucial to to store the private keys on the offline computer (or to write them to a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
-__*It is your responsibility to keep the private keys safe, your assets will be lost in case of loss or leak*__<br/>
+__*It is your responsibility to keep the private keys safe, your assets will be lost in case of key loss or leak*__<br/>
 
-## ONLINE
+## ONLINE: Preparing the transaction
 
 On the __*online*__ computer, we decided to spend the output associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_  in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
 ![previous transaction](images/blockchain.com-tx-127...png)
 <br/>
-With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template _tx/template.xml_ as a parameter.<br/>
+With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script _ONLINE/sign.sh_, passing the structural template _tx/template.xml_ as a parameter.<br/>
 Please note the interactive "_Enter xyz..._" questions that the script poses, and the answers that we've given:<br/>
 
     ~/bitcoin$  ONLINE/sign.sh tx/template.xml 
@@ -182,7 +182,7 @@ Please note the interactive "_Enter xyz..._" questions that the script poses, an
 Notice that the output of the script is a new xml file, containing the filled-out template with all the entered information in its right place. There is no signature yet in this data, it is just the preparation for the signing that we do on the _offline_ computer.
 
 
-## OFFLINE
+## OFFLINE: Signing the transaction
 
 By means of USB drive or similar, we transfered the xml file created on the online computer to our __*offline*__ computer.<br/>
 Now it was time to _prove ownership_ of address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_, which is generally done by signing the raw transaction structure with the corresponding private key.<br/>
@@ -290,3 +290,8 @@ See how the script did its thing:<br/>
     Once you have successfully broadcast your tansaction, watch its status on the blockchain: https://blockchain.com/btc/tx/180d08561d4f85e22bfcde890a17f353250c302e995042a1e42b226984e3e9da.
 
 
+## ONLINE: Verifying and broadcasting the transaction
+
+As shown already in the [README](README.md) file, we copied the '_signedtransaction_' string over to our __*online*__ computer, and opened (https://blockchain.com/btc/decode-tx):<br/>
+<br/>
+After verification, we were ready to broadcast the transaction into the blockchain by using (https://blockchain.com/btc/pushtx):<br/>
