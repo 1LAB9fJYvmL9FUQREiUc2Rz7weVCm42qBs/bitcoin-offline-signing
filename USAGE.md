@@ -1,12 +1,65 @@
 # Usage
 
+## OFFLINE
+
+On the _offline_ computer, the script _offline/createkeys.sh_ lets you create ECDSA key pairs (bitcoin uses ECDSA) and converts them in a bunch of formats.<br/>
+Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:
+Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
+
+    ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
+    Enter your 32-byte secret as a hex string and press ctrl-d when you're done (ignore this message if you've piped the byte string through STDIN)
+    Private key: ---------------------------------------
+    0541B96413B3AA31039DA28FADF5933843FEC01B3417C4F3CBB9D5728A52BCF8
+    read EC key
+    Private WIF: ---------------------------------------
+    KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7
+    Private key: ---------------------------------------
+    0541b96413b3aa31039da28fadf5933843fec01b3417c4f3cbb9d5728a52bcf8
+    Private key in DER format: -------------------------
+    302e02010104200541b96413b3aa31039da28fadf5933843fec01b3417c4f3cbb9d5728a52bcf8a00706052b8104000a
+    writing EC key
+    Public key in DER format: --------------------------
+    3056301006072a8648ce3d020106052b8104000a0342000445d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf368f8a17790f70638a43e666fe514614fc6d729801f79c3ed8f2932812e7305a9
+    Public key: ----------------------------------------
+    0445d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf368f8a17790f70638a43e666fe514614fc6d729801f79c3ed8f2932812e7305a9
+    Public Key (compressed): --------------------------
+    0345d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf3
+    pubkeyhash: ----------------------------------------
+    0b2ad375fc1cc1d5a66076e0fad634b1f47848a5
+    BTC Address: ---------------------------------------
+    1223jiRFLt4yefzPVit5MzvoBtacGwLjVy 
+
+There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses)<br/>
+With our next transaction in mind, we created 2 new key pairs using the very same approach:<br/>
+
+    ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
+    Enter your 32-byte secret as a hex string and press ctrl-d when you're done (ignore this message if you've piped the byte string through STDIN)
+    Private key: ---------------------------------------
+    _(truncated here)_
+    pubkeyhash: ----------------------------------------
+    9ff7fe77800570e8959bb953f4380ea442cb7f32
+    BTC Address: ---------------------------------------
+    1FaqXRmQiYyGizWS9fK3GN6Y9GeSxPyRt1
+
+    ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
+    Enter your 32-byte secret as a hex string and press ctrl-d when you're done (ignore this message if you've piped the byte string through STDIN)
+    Private key: ---------------------------------------
+    _(truncated here)_
+    pubkeyhash: ----------------------------------------
+    862c0a08e5aa3e1ea796a85f9af376848c0352c7
+    BTC Address: ---------------------------------------
+    1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm
+
+Note: It is crucial to to store the private keys on the offline computer (or write them to a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
+__*It is your responsibility to keep the private keys safe, your assets will be lost in case of loss or leak*__<br/>
+
 ## ONLINE
 On the __*online*__ computer, we decided to spend a self-owned output of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
 With this information, and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
 Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
 
-    ~/bitcoin$ ONLINE/sign.sh tx/template.xml 
+    ~/bitcoin$  ONLINE/sign.sh tx/template.xml 
     Enter the transaction ID (txid) of the outpoint that you want to spend from: 127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f
     previoustxid: 127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f
     In order to provide the following data, open you favourite block explorer (e.g. https://www.blockchain.com/btc/tx/127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f) in your (tor) browser.
@@ -130,10 +183,9 @@ Notice that the output of the script is a new xml file, containing the filled-ou
 
 By means of USB drive or similar, we transfered the xml file created on the online computer to our __*offline*__ computer.<br/>
 The private key information is stored on the __*offline*__ computer, giving us the opportunity to pipe the private key WIF into our script _offline/sign.sh_, passing the xml file as an argument.<br/>
-Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
 See the script do its thing:<br/>
 
-    ~/bitcoin$ <<<KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7 offline/sign.sh /tmp/tmp.EUK5kzW5Ep
+    ~/bitcoin$  <<<KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7 offline/sign.sh /tmp/tmp.EUK5kzW5Ep
     Press ctrl-d when you are done entering the private key in wallet input format (ignore this message if you have piped the private key through STDIN)
     previoustxid: 127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f
     outpoint pubkeyhash: 0b2ad375fc1cc1d5a66076e0fad634b1f47848a5

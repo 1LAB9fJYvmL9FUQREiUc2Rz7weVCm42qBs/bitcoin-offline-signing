@@ -27,7 +27,6 @@ function hexstringlength { echo $(( `cat - | wc -c` / 2 )) | dec2hex ;}
 function sha256 { hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
 function toggleendian { sed -e 's/\(..\)/\1 /g' | xargs -n1 echo | grep -n '' | sort -gr | cut -d: -f2 | xargs echo | tr -d ' ' ;}
 function appendchecksum { hex=`cat -`; echo -n $hex; <<<$hex sha256 | sha256 | head -c 8 ;}
-#function addr2pubkeyhash { hex=`cat - | base58 -d | bin2hex`; tmp=`<<<$hex sed 's/........$//'`; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; <<<$tmp sed 's/^..//' ;}
 function addr2pubkeyhash { hex=`base58 -d | bin2hex`; tmp=${hex:0:42}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2} ;}
 function pub2compressedpub { pub=`cat -`; <<<${pub:(-1)} tr 02468aAcCeE 2 | tr 13579bBdDfF 3 | xargs -n1 -I{} echo -n 0{}${pub:2:64} ;}
 function xmlget { xpath="$1"; cat $xml | xmlstarlet sel --text --template --value-of "$xpath" | tr -d '\n' ;}
@@ -42,7 +41,7 @@ function foreachoutput { cat $xml | xmlstarlet sel --template --match "//tx[@typ
 # openssl signing with BIP62 treatment for S values, see https://bitcoin.stackexchange.com/questions/59820/sign-a-tx-with-low-s-value-using-openssl :
 function signrawtransactionwithkey { raw=`cat -`; sig=''; for i in {0..999}; do sig=`<<<$raw hex2bin | openssl pkeyutl -inkey ${privatekeyfile} -sign -in - -pkeyopt digest:sha256 | bin2hex`; [[ $sig =~ 022100 ]] || break; done; echo $sig ;}
 function verifyrawtransactionwithkey { hex2bin | openssl pkeyutl -inkey ${publickeyfile} -pubin -verify -in - -pkeyopt digest:sha256 -sigfile <(<<<$1 hex2bin) ;}
-function wif2priv { hex=`base58 -d | bin2hex`; tmp=${hex:0:68}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2:64} ;}
+function wif2priv { hex=`base58 -d | bin2hex`; tmp=${hex%????????}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2:64} ;}
 function priv2pem { echo "-----BEGIN EC PRIVATE KEY-----"; <<<"302E0201010420`cat -`a00706052b8104000a" hex2bin | base64; echo "-----END EC PRIVATE KEY-----" ;}
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ FUNCTIONS^
 priv=`<<<$wif wif2priv`

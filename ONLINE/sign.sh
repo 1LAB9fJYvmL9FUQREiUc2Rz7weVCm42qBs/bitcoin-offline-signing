@@ -38,7 +38,7 @@ function foreachoutput { cat $xml | xmlstarlet sel --template --match "//tx[@typ
 # openssl signing with BIP62 treatment for S values, see https://bitcoin.stackexchange.com/questions/59820/sign-a-tx-with-low-s-value-using-openssl :
 function signrawtransactionwithkey { raw=`cat -`; sig=''; for i in {0..999}; do sig=`<<<$raw hex2bin | openssl pkeyutl -inkey ${privatekeyfile} -sign -in - -pkeyopt digest:sha256 | bin2hex`; [[ $sig =~ 022100 ]] || break; done; echo $sig ;}
 function verifyrawtransactionwithkey { hex2bin | openssl pkeyutl -inkey ${publickeyfile} -pubin -verify -in - -pkeyopt digest:sha256 -sigfile <(<<<$1 hex2bin) ;}
-function wif2priv { hex=`base58 -d | bin2hex`; tmp=${hex:0:66}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2} ;}
+function wif2priv { hex=`base58 -d | bin2hex`; tmp=${hex%????????}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2:64} ;}
 function priv2pem { echo "-----BEGIN EC PRIVATE KEY-----"; <<<"302E0201010420`cat -`a00706052b8104000a" hex2bin | base64; echo "-----END EC PRIVATE KEY-----" ;}
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ FUNCTIONS^
 
