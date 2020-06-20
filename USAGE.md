@@ -3,21 +3,19 @@
 ## OFFLINE
 
 On the _offline_ computer, the script _offline/createkeys.sh_ lets you create ECDSA key pairs (bitcoin uses ECDSA) and converts them in a bunch of formats.<br/>
-Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:
+Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:<br/>
 Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
 
     ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
     Enter your 32-byte secret as a hex string and press ctrl-d when you're done (ignore this message if you've piped the byte string through STDIN)
     Private key: ---------------------------------------
     0541B96413B3AA31039DA28FADF5933843FEC01B3417C4F3CBB9D5728A52BCF8
-    read EC key
     Private WIF: ---------------------------------------
     KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7
     Private key: ---------------------------------------
     0541b96413b3aa31039da28fadf5933843fec01b3417c4f3cbb9d5728a52bcf8
     Private key in DER format: -------------------------
     302e02010104200541b96413b3aa31039da28fadf5933843fec01b3417c4f3cbb9d5728a52bcf8a00706052b8104000a
-    writing EC key
     Public key in DER format: --------------------------
     3056301006072a8648ce3d020106052b8104000a0342000445d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf368f8a17790f70638a43e666fe514614fc6d729801f79c3ed8f2932812e7305a9
     Public key: ----------------------------------------
@@ -29,7 +27,7 @@ Note: _Never disclose any representation of your private key online as we do her
     BTC Address: ---------------------------------------
     1223jiRFLt4yefzPVit5MzvoBtacGwLjVy 
 
-There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses)<br/>
+There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses).<br/>
 With our next transaction in mind, we created 2 new key pairs using the very same approach:<br/>
 
     ~/bitcoin$  offline/entropy.sh | offline/createkeys.sh 
@@ -50,11 +48,12 @@ With our next transaction in mind, we created 2 new key pairs using the very sam
     BTC Address: ---------------------------------------
     1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm
 
-Note: It is crucial to to store the private keys on the offline computer (or write them to a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
+Note: It is crucial to to store the private keys on the offline computer (or to write them to a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
 __*It is your responsibility to keep the private keys safe, your assets will be lost in case of loss or leak*__<br/>
 
 ## ONLINE
-On the __*online*__ computer, we decided to spend a self-owned output of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
+
+On the __*online*__ computer, we decided to spend the output (associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_) of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
 With this information, and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
 Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
