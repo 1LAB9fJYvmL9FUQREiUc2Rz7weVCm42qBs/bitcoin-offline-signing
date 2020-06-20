@@ -2,7 +2,7 @@
 
 ## OFFLINE
 
-On the _offline_ computer, the script _offline/createkeys.sh_ lets you create ECDSA key pairs (bitcoin uses ECDSA) and converts them in a bunch of formats.<br/>
+On the _offline_ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them in a bunch of formats.<br/>
 Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:<br/>
 Note: _Never disclose any representation of your private key online as we do here - the reason we do it here is because the private key is worthless by now: All transaction outputs are *spent*_.<br/>
 
@@ -27,6 +27,7 @@ Note: _Never disclose any representation of your private key online as we do her
     BTC Address: ---------------------------------------
     1223jiRFLt4yefzPVit5MzvoBtacGwLjVy 
 
+The _entropy_ passed into the key generation script gets 256 bits of random data from /dev/random, which gets the data from the entropy pool of the Linux kernel.<br/>
 There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses).<br/>
 With our next transaction in mind, we created 2 new key pairs using the very same approach:<br/>
 
@@ -55,7 +56,7 @@ __*It is your responsibility to keep the private keys safe, your assets will be 
 
 On the __*online*__ computer, we decided to spend the output (associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_) of blockchain transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_ in a _new_ transaction, so we opened TOR browser to display the details:<br/>
 <br/>
-[previous_transaction](images/blockchain.com-tx-127...png)
+[previous transaction](images/blockchain.com-tx-127...png)
 <br/>
 With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script ONLINE/sign.sh, passing the structural template template.xml as a parameter.<br/>
 Please note the interactive "Enter xyz..." questions that the script poses, and the answers that we've given:<br/>
