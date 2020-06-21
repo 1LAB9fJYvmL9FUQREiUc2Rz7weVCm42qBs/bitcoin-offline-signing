@@ -301,3 +301,7 @@ After verification, we were ready to broadcast the transaction into the blockcha
 ...which was successful, the signature was accepted and the transaction was broadcast to the blockchain miners:<br/>
 
 ![broadcast](images/blockchain.info-pushtx.png)
+
+Feel free to check the confirmed status of [that transaction](https://blockchain.com/btc/tx/180d08561d4f85e22bfcde890a17f353250c302e995042a1e42b226984e3e9da) in the blockchain.
+
+<br/>
