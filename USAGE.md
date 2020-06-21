@@ -1,6 +1,6 @@
 # Usage
 
-## OFFLINE: Generating bitcoin addresses
+## OFFLINE: Generating bitcoin key pairs
 
 On the __*offline*__ computer, the script _offline/createkeys.sh_ lets you create bitcoin key pairs (bitcoin uses ECDSA) and converts them into a bunch of formats.<br/>
 Here is how we had previously created the key pair whose public bitcoin address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_ was used as one of the outputs of transaction _127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f_:<br/>
@@ -58,6 +58,7 @@ __*It is your responsibility to keep the private keys safe, your assets will be 
 On the __*online*__ computer, we decided to spend the output associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_  in a _new_ transaction, so we opened TOR browser to display the details of the previous transaction:<br/>
 <br/>
 ![previous transaction](images/blockchain.com-tx-127...png)
+<br/>
 <br/>
 With the output information and the bitcoin addresses that we generated earlier, we were prepared to run script _ONLINE/sign.sh_, passing the structural template _tx/template.xml_ as a parameter.<br/>
 Please note the interactive "_Enter xyz..._" questions that the script poses, and the answers that we've given:<br/>
@@ -179,7 +180,9 @@ Please note the interactive "_Enter xyz..._" questions that the script poses, an
     Above you see the content of xml file: /tmp/tmp.EUK5kzW5Ep
     Copy that xml file to your OFFLINE computer (the computer where your private keys are securely stored) for transaction signing with offline/sign.sh
 
-The output of the script was a new xml file, containing the filled-out template with all the entered information in the right place. There was no signature yet in this data, it's just the preparation for the signing that we did on the _offline_ computer as a next step.
+The output of the script was a new xml file, containing the filled-out template with all the entered information in the right place. There was no signature yet in this data, it was just the preparation for the signing that we were supposed to do on the _offline_ computer as a next step.<br/>
+<sup>Note: Do the _math_: We had 10000 satoshis to spend, and intended to give 1000 to address 1FaqXRmQiYyGizWS9fK3GN6Y9GeSxPyRt1 and 3000 to address 1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm. Which implies that the _rest_ went to the blockchain miners as a fee. A fee of 6000 satoshis for a transaction of this kind was quite normal by the time of this writing, as fees are calculated on the basis of bytes transmitted, not amount spent. The only reason that, in the transaction we speak about in this article, the fee was unproportionally high compared to the amounts spent was the fact that the spent amounts were _very low_. Miner fees can be quite volatile - if you want to get a feeling for the current miner fees when you create your next transaction, have a look at the '_mempool_', e.g. (https://jochen-hoenicke.de/queue/ )</sup><br/>
+
 
 
 ## OFFLINE: Signing the transaction
@@ -292,8 +295,50 @@ See how the script did its thing:<br/>
 
 ## ONLINE: Verifying and broadcasting the transaction
 
-As shown already in the [README](README.md) file, we copied the '_signedtransaction_' string over to our __*online*__ computer, and opened (https://blockchain.com/btc/decode-tx):<br/>
+As shown already in the [README](README.md) file, we copied the '_signedtransaction_' string over to our __*online*__ computer, and double checked our transaction details with the help of (https://blockchain.com/btc/decode-tx):<br/>
 <br/>
+
+    {
+      "version": 1,
+      "locktime": 0,
+      "ins": [
+        {
+          "n": 0,
+          "script": {
+            "asm": "304402203127ad4a48b7265dae93d5b09c2211ca82775478542dca4acd926b94d0d1d65202202557027d26c265513fc84e3a62332770ed3dfec652f498139690b756b5384e1d01 0345d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf3",
+            "hex": "47304402203127ad4a48b7265dae93d5b09c2211ca82775478542dca4acd926b94d0d1d65202202557027d26c265513fc84e3a62332770ed3dfec652f498139690b756b5384e1d01210345d57c07db0a538dd3dc2341cb6f80b780aa7a5a7750d29ce4f00f00874b3bf3"
+          },
+          "sequence": 4294967295,
+          "txid": "127ea67612d6e217f99b2b28cc9f8347eb518f99c45102f925774ad8f4958d0f",
+          "witness": []
+        }
+      ],
+      "outs": [
+        {
+          "script": {
+            "addresses": [
+              "1FaqXRmQiYyGizWS9fK3GN6Y9GeSxPyRt1"
+            ],
+            "asm": "OP_DUP OP_HASH160 9ff7fe77800570e8959bb953f4380ea442cb7f32 OP_EQUALVERIFY OP_CHECKSIG",
+            "hex": "76a9149ff7fe77800570e8959bb953f4380ea442cb7f3288ac"
+          },
+          "value": 1000
+        },
+        {
+          "script": {
+            "addresses": [
+              "1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm"
+            ],
+            "asm": "OP_DUP OP_HASH160 862c0a08e5aa3e1ea796a85f9af376848c0352c7 OP_EQUALVERIFY OP_CHECKSIG",
+            "hex": "76a914862c0a08e5aa3e1ea796a85f9af376848c0352c788ac"
+          },
+          "value": 3000
+        }
+      ],
+      "hash": "180d08561d4f85e22bfcde890a17f353250c302e995042a1e42b226984e3e9da",
+      "txid": "180d08561d4f85e22bfcde890a17f353250c302e995042a1e42b226984e3e9da"
+    }
+
 After verification, we were ready to broadcast the transaction into the blockchain by using (https://blockchain.com/btc/pushtx):<br/>
 
 ![pushtx](images/blockchain.com-btc-pushtx.png)
