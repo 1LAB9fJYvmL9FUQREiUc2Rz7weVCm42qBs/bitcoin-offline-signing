@@ -50,12 +50,12 @@ With our next transaction in mind, we created 2 new key pairs using the very sam
     BTC Address: ---------------------------------------
     1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm
 
-Note: It is crucial to to store the private keys on the offline computer (or to write them to a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
+Note: It is crucial to to store the private keys on the offline computer (and/or to write them down on a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
 __*It is your responsibility to keep the private keys safe, your assets will be lost in case of key loss or leak*__<br/>
 
 ## ONLINE: Preparing the transaction
 
-On the __*online*__ computer, we decided to spend the output associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_  in a _new_ transaction, so we opened TOR browser to display the details:<br/>
+On the __*online*__ computer, we decided to spend the output associated with address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_  in a _new_ transaction, so we opened TOR browser to display the details of the previous transaction:<br/>
 <br/>
 ![previous transaction](images/blockchain.com-tx-127...png)
 <br/>
@@ -179,14 +179,14 @@ Please note the interactive "_Enter xyz..._" questions that the script poses, an
     Above you see the content of xml file: /tmp/tmp.EUK5kzW5Ep
     Copy that xml file to your OFFLINE computer (the computer where your private keys are securely stored) for transaction signing with offline/sign.sh
 
-Notice that the output of the script is a new xml file, containing the filled-out template with all the entered information in its right place. There is no signature yet in this data, it is just the preparation for the signing that we do on the _offline_ computer.
+The output of the script was a new xml file, containing the filled-out template with all the entered information in the right place. There was no signature yet in this data, it's just the preparation for the signing that we did on the _offline_ computer as a next step.
 
 
 ## OFFLINE: Signing the transaction
 
 By means of USB drive or similar, we transfered the xml file created on the online computer to our __*offline*__ computer.<br/>
 Now it was time to _prove ownership_ of address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_, which is generally done by signing the raw transaction structure with the corresponding private key.<br/>
-The private key information is stored on the __*offline*__ computer, giving us the opportunity to pipe the private key WIF into our script _offline/sign.sh_, passing the xml file as an argument.<br/>
+The private key information was stored on the __*offline*__ computer, giving us the opportunity to pipe the private key WIF into our script _offline/sign.sh_, passing the xml file as an argument.<br/>
 See how the script did its thing:<br/>
 
     ~/bitcoin$  <<<KwPvrNmsD6o39hY9VSWipdhn4koi7oqGiomJErjkjvKrqudZNcd7 offline/sign.sh /tmp/tmp.EUK5kzW5Ep
@@ -295,3 +295,9 @@ See how the script did its thing:<br/>
 As shown already in the [README](README.md) file, we copied the '_signedtransaction_' string over to our __*online*__ computer, and opened (https://blockchain.com/btc/decode-tx):<br/>
 <br/>
 After verification, we were ready to broadcast the transaction into the blockchain by using (https://blockchain.com/btc/pushtx):<br/>
+
+![pushtx](images/blockchain.com-btc-pushtx.png)
+
+...which was successful, the signature was accepted and the transaction was broadcast to the blockchain miners:<br/>
+
+![broadcast](images/blockchain.info-pushtx.png)
