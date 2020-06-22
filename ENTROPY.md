@@ -4,7 +4,7 @@ Please read this [_great article_](https://blog.cloudflare.com/ensuring-randomne
 It also explains when and how the Linux kernel entropy pool is refilled with entropy.<br/>
 One very important part of the article deals with __*math*__, explaining how a 'mix-in' of entropy from a different source can only _add_ bits to the total entropy - thus improve unpredictable randomness which is crucial for safe keys.<br/>
 <br/>
-If you look at the offline/entropy.sh script of this framework, you will notice the function '_mixor_' that serves the 'mix-in' purpose:<br/>
+If you look at the _offline/entropy.sh_ script of this framework, you will notice the function '_mixor_' that serves the _mix-in_ purpose:<br/>
 In case that _you_ decide that, based on your level of trust, the Linux kernel entropy is not safe enough for your needs, then you can mix in additional entropy by providing it as the 2nd parameter to the _offline/entropy_ script.<br/>
 Here's an example:<br/>
 
@@ -20,5 +20,5 @@ Here's an example:<br/>
 
 Note how 'Entropy' is xor'd from the system provided entropy _12cfa06d00520efdfbb229addca851df0745c92372d1149f9a6eee81271094a5_ and the user-provided entropy _deadbeefffffffffdeadbeef00000000deadbeefffffffffdeadbeef00000000_<br/>
 <br/>
-<sub>_Even 5 eyes cannot beat math_</sub>
+<sub>_"Even 5 eyes cannot beat math"_</sub>
 
