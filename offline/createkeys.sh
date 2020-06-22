@@ -1,5 +1,5 @@
 #!/bin/bash
-# based on the 32-byte string piped into this script it will:
+# based on the 32-byte secret string piped into this script it will:
 # - create the bitcoin private key in WIF (wallet input format)
 # - convert back from WIF to the private key (hex string)
 # - create the private key in DER format (readable by openssl) (as hex string)
@@ -54,16 +54,3 @@ dirname=`dirname $0`
 | ${dirname}/../common/pub2pubkeyhash.sh \
 | ${dirname}/../common/pubkeyhash2addr.sh \
 
-exit
-
-
-
-
-
-
-
-
-
-| ${dirname}/priv2der.sh \
-| ${dirname}/der2pubder.sh \
-| ${dirname}/../common/pubder2pub.sh \
