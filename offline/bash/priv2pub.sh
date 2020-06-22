@@ -85,6 +85,7 @@ function progressstep() {
 # ****************************
 # main:
 # ****************************
+echo "This will take a while. You can go and get a coffee :)" >&2
 pkx=0
 pky=0
 for i in {0..255}; do
@@ -108,7 +109,6 @@ for i in {0..255}; do
 done
 
 #ybyte=`calc "2 + $pky%2"`
-#echo -n "0$ybyte"; calc $pkx
 echo $'\nPublic Key: ---------------------------------------' >&2
 echo -n '04' >&2
 calc $pkx | xargs echo -n >&2
