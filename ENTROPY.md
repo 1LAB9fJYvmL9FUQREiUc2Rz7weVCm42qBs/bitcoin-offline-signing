@@ -20,5 +20,5 @@ Here's an example:<br/>
 
 Note how 'Entropy' is xor'd from the system provided entropy _12cfa06d00520efdfbb229addca851df0745c92372d1149f9a6eee81271094a5_ and the user-provided entropy _deadbeefffffffffdeadbeef00000000deadbeefffffffffdeadbeef00000000_<br/>
 <br/>
-<sub>_"Even 5 eyes cannot beat math"_</sub>
+
 
