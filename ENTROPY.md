@@ -1,11 +1,12 @@
 # Entropy
 
-Please read this [_great article_](https://blog.cloudflare.com/ensuring-randomness-with-linuxs-random-number-generator/) if you're interested in how entropy works on Linux systems.
+Please read this [_great article_](https://blog.cloudflare.com/ensuring-randomness-with-linuxs-random-number-generator/) that's discussing the inner workings of entropy on Linux systems.
 It also explains when and how the Linux kernel entropy pool is refilled with entropy.<br/>
 One very important part of the article deals with __*math*__, explaining how a 'mix-in' of entropy from a different source can only _add_ bits to the total entropy - thus improve unpredictable randomness which is crucial for safe keys.<br/>
 <br/>
+There's a long history of flaws and backdoors in PRNGs (pseudo random number generators), that's why mixing in your own randomness is recommendable when you create your own bitcoin private keys.<br/>
 If you look at the _offline/entropy.sh_ script of this framework, you will notice the function '_mixor_' that serves the _mix-in_ purpose:<br/>
-In case that _you_ decide that, based on your level of trust, the Linux kernel entropy is not safe enough for your needs, then you can mix in additional entropy by providing it as the 2nd parameter to the _offline/entropy_ script.<br/>
+In case that _you_ decide that, based on your level of trust, the Linux kernel entropy is not safe enough for your needs, then you can mix in additional entropy by providing it manually as the 2nd parameter to the _offline/entropy_ script.<br/>
 Here's an example:<br/>
 
     ~/bitcoin$  offline/entropy.sh 256 deadbeefffffffffdeadbeef00000000deadbeefffffffffdeadbeef00000000 | offline/createkeys.sh 
