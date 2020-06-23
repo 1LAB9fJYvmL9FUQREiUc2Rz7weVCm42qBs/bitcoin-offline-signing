@@ -22,4 +22,4 @@ Here's an example:<br/>
 Note how 'Entropy' is xor'd from the system provided entropy _12cfa06d00520efdfbb229addca851df0745c92372d1149f9a6eee81271094a5_ and the user-provided entropy _deadbeefffffffffdeadbeef00000000deadbeefffffffffdeadbeef00000000_<br/>
 <br/>
 
-
+This way, even if one of the sources of randomness was _compromised_, it would not affect the _other_ source of randomness, resulting (as a minimum) in the number of entropy bits of the other system.
