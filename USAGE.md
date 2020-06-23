@@ -27,7 +27,7 @@ Note: _Never disclose any representation of your private key online as we do her
     BTC Address: ---------------------------------------
     1223jiRFLt4yefzPVit5MzvoBtacGwLjVy 
 
-The _entropy_ piped into the key generation script gets 256 bits of random data from /dev/random, which gets the data from the entropy pool of the Linux kernel.<br/>
+The _entropy_ piped into the key generation script gets 256 bits of random data from the Linux kernel. (see [ENTROPY.md](ENTROPY.md) )<br/>
 There are two key formats that stand out in terms of usefullness: the private WIF (wallet input format) and the public BTC address, starting with the letter 1 (for P2PKH addresses).<br/>
 <br/>
 With our next transaction in mind, we created 2 new key pairs using the very same approach:<br/>
@@ -50,7 +50,7 @@ With our next transaction in mind, we created 2 new key pairs using the very sam
     BTC Address: ---------------------------------------
     1DESJbwXNkqbFWuTnygNnGWtzz85KNSfKm
 
-Note: It is crucial to to store the private keys on the offline computer (and/or to write them down on a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
+Note: It is crucial to to _store_ the private keys on the offline computer (and/or to write them down on a paper wallet), because you will need them in the future when you want to redeem unspent bitcoins from the associated addresses.<br/>
 __*It is your responsibility to keep the private keys safe, your assets will be lost in case of key loss or leak*__<br/>
 
 ## ONLINE: Preparing the transaction
@@ -188,8 +188,8 @@ Miner fees can be quite volatile - if you want to get a feeling for the current 
 
 ## OFFLINE: Signing the transaction
 
-By means of USB drive or similar, we transfered the xml file created on the online computer to our __*offline*__ computer.<br/>
-Now it was time to _prove ownership_ of address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_, which is generally done by signing the raw transaction structure with the corresponding private key.<br/>
+By means of USB drive or similar, we transfered the xml file created on the online computer to our __*airgap*__ system.<br/>
+Now it was time to _prove ownership_ of address _1223jiRFLt4yefzPVit5MzvoBtacGwLjVy_, which is generally done by _signing_ the raw transaction structure with the corresponding private key.<br/>
 The private key information was stored on the __*offline*__ computer, giving us the opportunity to pipe the private key WIF into our script _offline/sign.sh_, passing the xml file as an argument.<br/>
 See how the script did its thing:<br/>
 
