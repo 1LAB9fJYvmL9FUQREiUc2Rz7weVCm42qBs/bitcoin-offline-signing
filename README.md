@@ -99,7 +99,7 @@ The good news is that our code is very lightweight, so anyone who is good in bas
 
 ## Design
 
-As a consequence of the academic nature of our little project and the before mentioned security considerations, we came up with a __*constraint list*__ which avoids the use of additional bitcoin libraries.<br/>
+As a consequence of the academic nature of our little project and the before mentioned trust considerations, we came up with a __*constraint list*__ which avoids the use of additional bitcoin libraries.<br/>
 As per this list, we were allowed to use:<br/>
 
 - OpenSSL as the _only_ cryptography library (given the fact that _we_ use to use it on a day-to-day basis anyway)<br/>
@@ -113,8 +113,8 @@ This is reflected in the folder structure, with the scripts that deal with __*pr
 
 The current set of signature scripts _only_ supports P2PKH transactions, segregated witness and P2SH transactions are not yet supported. Multisig transactions are not yet supported either.<br/>
 <br/>
-Also, some critics will argument that it is recommendable to use existing bitcoin libraries because of their maturity level, because of the fact that they are tested assets and because of their ease-of-use. Although the same holds true for OpenSSL, they have a valid point.<br/>
-However, besides the fact that we only need a subset of the functionality, our goal is different as we aim to go down to the bit level without having a library abstract implementation details from us, and we guess that we have an audience of people who have the same curiousity and want to see how signatures can be done in the __*bash*__ shell with the tools that they're familiar with.
+Critics will argument that it is recommendable to use existing bitcoin libraries because of their maturity level and because of their ease-of-use. Although the same holds true for OpenSSL, they have a valid point.<br/>
+However, besides the fact that we only need a _subset_ of the functionality that a fullblown bitcoin lib offered, our goal is different as we aim to debug down to the bit level without having a library abstract implementation details from us, and we guess that we have an audience of people who have the same curiousity and want to see how signatures can be done in the __*bash*__ shell with the tools that they're familiar with.
 
 ## Requirements
 
