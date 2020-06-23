@@ -94,7 +94,7 @@ Please read the details of our approach to entropy here: [ENTROPY.md](ENTROPY.md
 <br/>
 <sub>On a sidenote: Ideally, you would only trust software that you have fully _reviewed_ and understood, which is far from realistic, considering that our favourite Linux system has been compiled from more lines of code than either one of us could read or review in a lifetime. On the other hand, for open-source systems it's the _community_ that is always free to review the code and keep the software quality and reliability on a high level.<br/>
 Can you trust _us_? Of course not. Not unless you (or somebody that you trust) have reviewed our code.<br/>
-The good news is that the code is very lightweight, so anyone who is good in bash scripting can quickly understand what we're doing here.</sub>
+The good news is that our code is very lightweight, so anyone who is good in bash scripting and has an understanding of cryptographic hashes can quickly understand what we're doing here.</sub>
 <br/>
 
 ## Design
