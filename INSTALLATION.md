@@ -10,15 +10,15 @@ Make sure that, besides your _online_ Linux system, you have another "_airgap_" 
 ## ONLINE system:
 
 On the _online_ system, clone this github repository underneath a folder of your choice:<br/>
-`git clone git@github.com:1LAB9fJYvmL9FUQREiUc2Rz7weVCm42qBs/bitcoin.git`
+`git clone https://github.com/1LAB9fJYvmL9FUQREiUc2Rz7weVCm42qBs/bitcoin-offline-signing.git`
 
 If you don't have `git` installed, use the https download feature of the repository.<br/>
-A _bitcoin_ folder should have been created. Make a copy of that folder and all of its subfolders and store it on a clean thumb drive.
+A _bitcoin-offline-signing_ folder should have been created. Make a copy of that folder and all of its subfolders and store it on a clean thumb drive.
 
 ## AIRGAP system:
 
 Make sure that the [Requirements](README.md#Requirements) are met.<br/>
-Then copy the _bitcoin_ folder and all of its subfolders from your thumb drive to a location of your choice.<br/>
+Then copy the _bitcoin-offline-signing_ folder and all of its subfolders from your thumb drive to a location of your choice.<br/>
 
 ## ONLINE system:
 
