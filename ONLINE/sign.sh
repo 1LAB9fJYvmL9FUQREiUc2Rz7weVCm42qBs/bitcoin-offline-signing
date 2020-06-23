@@ -21,9 +21,8 @@ function bin2hex { xxd -p -c 256 | tr -d '\n' ;}
 function dec2hex { xargs printf ${1:-"%02x"} ;}
 function hexstringlength { echo $(( `cat - | wc -c` / 2 )) | dec2hex ;}
 function sha256 { hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
-function toggleendian { sed -e 's/\(..\)/\1 /g' | xargs -n1 echo | grep -n '' | sort -gr | cut -d: -f2 | xargs echo | tr -d ' ' ;}
+function toggleendian { local i=`cat`; [[ $i =~ ... ]] && <<<${i:2} toggleendian; echo -n "${i:0:2}" ;}
 function appendchecksum { hex=`cat -`; echo -n $hex; <<<$hex sha256 | sha256 | head -c 8 ;}
-#function addr2pubkeyhash { hex=`cat - | base58 -d | bin2hex`; tmp=`<<<$hex sed 's/........$//'`; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; <<<$tmp sed 's/^..//' ;}
 function addr2pubkeyhash { hex=`base58 -d | bin2hex`; tmp=${hex:0:42}; [[ "$hex" == "`<<<$tmp appendchecksum`" ]] || <<<"FAILURE: INVALID ADDRESS!" errout; echo -n ${tmp:2} ;}
 function pub2compressedpub { pub=`cat -`; <<<${pub:(-1)} tr 02468aAcCeE 2 | tr 13579bBdDfF 3 | xargs -n1 -I{} echo -n 0{}${pub:2:64} ;}
 function xmlget { xpath="$1"; cat $xml | xmlstarlet sel --text --template --value-of "$xpath" | tr -d '\n' ;}

@@ -25,7 +25,7 @@ entropy=`cat /dev/random | head -c ${bytes} | bin2hex`
 if [ -n "$additionalentropy" ]; then
 	echo "System Entropy: ------------------------------------" >&2
 	echo $entropy >&2
-	entropy=`echo -n $entropy | mixor ${additionalentropy}`
+	entropy=`<<<$entropy mixor ${additionalentropy}`
 	echo "Entropy: -------------------------------------------" >&2
 	echo $entropy >&2
 fi
