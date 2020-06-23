@@ -1,5 +1,5 @@
-# bitcoin
-Offline Bitcoin Wallet - using pure OpenSSL and Linux to create transaction signatures byte-by-byte 
+# bitcoin transaction signing
+Offline Bitcoin Transaction Signing - using pure __*OpenSSL*__ and _Linux_ to create transaction signatures byte-by-byte 
 
 ## Intro
 
@@ -13,7 +13,7 @@ The above was the success message indicating that the submitted signature had be
 ![pushtx](/images/blockchain.com-btc-pushtx.png)
 
 <br/>
-<sup>In case that you're a newbie to blockchain technology, we want to avoid a misunderstanding of the site blockchain.com:<br/>
+<sup>In case that you're a newbie to blockchain technology, we want to avoid a misunderstanding of the site _blockchain.com_:<br/>
 It is just one of MANY blockchain explorers that lets you query data of the public decentralized blockchain.<br/></sup>
 Notice the "tip" in the upper part of the "Broadcast transaction" screen: Of course we had taken the chance to conveniently verify our decoded transaction details before submission. Here's the decoded transaction:<br/>
 
