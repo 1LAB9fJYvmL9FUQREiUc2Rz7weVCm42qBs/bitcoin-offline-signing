@@ -6,7 +6,7 @@ wif=`cat -`
 compressed="false"; [[ $wif =~ ^(K|L).* ]] && compressed="true"
 #read -p "If you are not on an OFFLINE computer, cancel (ctrl/c) this script! Otherwise, enter private key in hex notation: " priv
 # ######################################################################################### FUNCTIONS:
-declare -r FEEMIN=5000
+declare -r FEEMIN=2000
 declare -r FEEMAX=12000
 declare -r GREEN='\033[1;32m'
 declare -r ORANGE='\033[1;33m'

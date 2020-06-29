@@ -4,12 +4,12 @@
 #################################### FUNCTIONS:
 function bin2hex { cat - | xxd -p -c 256 | tr -d '\n' ;}
 function hex2bin { cat - | xxd -r -p ;}
-function sha256 { cat - | hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
+function sha256 { hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
 function appendchecksum() { hex=`cat -`; echo -n $hex; <<<$hex sha256 | sha256 | head -c 8 ;}
 ####################################
 
 net=${1:-"00"}
-# add a prefix of 0x00 (MAINNET/P2PKH) or 0x05 (MAINNET/P2SH)(TESTNET/P2PKH would be 0x6F):
+# add a prefix of 0x00 (BTC/MAINNET/P2PKH) or 0x05 (BTC/MAINNET/P2SH) or 0x6F (TESTNET/P2PKH) or 0x30 (LiteCoin/MAINNET/P2PKH):
 nnhash="${net}`cat -`"
 
 # Append the checksum bytes:

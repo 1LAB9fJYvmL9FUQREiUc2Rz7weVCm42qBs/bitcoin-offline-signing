@@ -5,8 +5,8 @@
 #################################### FUNCTIONS:
 function bin2hex { cat - | xxd -p -c 256 | tr -d '\n' ;}
 function hex2bin { cat - | xxd -r -p ;}
-function sha256 { cat - | hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
-function ripemd160 { cat - | hex2bin | openssl dgst --binary --ripemd160 | bin2hex ;}
+function sha256 { hex2bin | openssl dgst --binary --sha256 | bin2hex ;}
+function ripemd160 { hex2bin | openssl dgst --binary --ripemd160 | bin2hex ;}
 ####################################
 
 net=${1:-"00"}

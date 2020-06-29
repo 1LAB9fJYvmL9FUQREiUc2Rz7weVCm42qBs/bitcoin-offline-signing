@@ -68,10 +68,10 @@ def sk_to_pk(sk):
 if len(sys.argv) >= 2:
     sk = long(sys.argv[1], 16)
 else:
-    sk = 0x3D0AE92EA4F7AB9A882D83D0DD7EC1C0A99A5CD2BD72DB35FF86D978D0C163F1
+    raise ValueError('Please provide the private key in hex format as a 1st parameter')
+
 pk = sk_to_pk(sk)
 pkx, pky = pk
-ybyte=0x02 if pky % 2 == 0 else 0x03
-print "%s%s" % (hex(pkx),hex(pky))
-#print "%s %s %s" % (hex(ybyte),hex(pkx),hex(pky))
-
+ybyte=0x02 if pky % 2 == 0 else 0x03    # can be used when a compressed pubkey is desired
+hexpk = "%s%s%s" % ("04",hex(pkx),hex(pky)) # 04 indicates that an uncompressed pubkey is desired
+print (hexpk.replace("0x","",2).replace("L","",2));

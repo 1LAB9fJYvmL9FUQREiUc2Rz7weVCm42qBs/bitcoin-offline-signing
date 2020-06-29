@@ -2,7 +2,7 @@
 xmlreadonly=${1?"Usage: $0 <xml template file with transaction structure)>"}
 xml=`mktemp`; cp $xmlreadonly $xml
 # ######################################################################################### FUNCTIONS:
-declare -r FEEMIN=5000
+declare -r FEEMIN=2000
 declare -r FEEMAX=12000
 declare -r GREEN='\033[1;32m'
 declare -r ORANGE='\033[1;33m'
