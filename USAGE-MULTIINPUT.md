@@ -741,4 +741,11 @@ Now we sign the 4th and last outpoint:<br/>
     After verification, paste your signedtransaction into https://blockchain.com/btc/pushtx to broadcast it.
     Once you have successfully broadcast your tansaction, watch its status on the blockchain: https://blockchain.com/btc/tx/cc25265685849f446946a0e4269c923e3db66cb8d8cb29f0bbe257204712f13b.
 
-All the outpoints are signed now and we can verify and broadcast the transaction.<br/>
+All the outpoints are signed now and we can verify and broadcast the transaction:<br/>
+
+![decodetx](/images/blockchain.com-decode-tx-4utxos.png)<br/>
+
+As everything looks fine, we broadcast the signed transaction through the blockchain.com `pushtx` page, and it ends up on the blockchain mempool, ready for the miners to include in the next block:<br/>
+
+![decodetx](/images/blockchain.com-tx-cc25...png)<br/>
+
