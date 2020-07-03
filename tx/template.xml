@@ -1,10 +1,12 @@
 <txs type="P2PKH">
-	<tx type="previous">
-		<txid></txid>
+	<raw bits="32" desc="1. version">01000000</raw>
+	<raw bits="8" desc="2. varint specifying the number of inputs"></raw>
+	<txin>
+		<raw bits="256" id="" desc="3. transaction id from which we want to redeem an output (reverse order of @id)"></raw>
 		<outputs>
-			<output index="0">
-				<address></address>
-				<value desc="decimal value in satoshis"></value>
+			<output address="" value="" desc="(provide BTC address and decimal value in satoshis)">
+				<raw bits="32" desc="4. output index we want to redeem from the transaction"></raw>
+				<raw bits="8" nullvalue="00" desc="5. For the purpose of signing the transaction, length of scriptPubKey of the outpoint. After signing, length of sigscript">19</raw>
 				<pkscript>
 					<raw bits="8" desc="OP_DUP">76</raw>
 					<raw bits="8" desc="OP_HASH160">a9</raw>
@@ -13,54 +15,36 @@
 					<raw bits="8" desc="OP_EQUALVERIFY">88</raw>
 					<raw bits="8" desc="OP_CHECKSIG">ac</raw>
 				</pkscript>
+				<raw bits="32" desc="7. sequence. This is currently always set to 0xffffffff">ffffffff</raw>
 			</output>
 		</outputs>
-	</tx>
-	<tx type="current">
-		<inputs>
-			<input>
-				<raw bits="32" desc="1. version">01000000</raw>
-				<raw bits="8" desc="2. varint specifying the number of inputs">01</raw>
-				<raw bits="256" desc="3. transaction from which we want to redeem an output (reverse order)"></raw>
-				<raw bits="32" desc="4. output index we want to redeem from the transaction"></raw>
-				<scriptsig iteration="1">
-					<raw bits="8" desc="5. For the purpose of signing the transaction, this is temporarily filled with the scriptPubKey of the output we want to redeem. First we write a one-byte varint (in hex) which denotes the length of the scriptPubKey">19</raw>
-					<raw bits="8" desc="6. (OP_DUP)">76</raw>
-					<raw bits="8" desc="6. (OP_HASH160 - do a RipeMD160 on the top stack item)">a9</raw>
-					<raw bits="8" desc="6. (push hex 0x14 bytes on stack)">14</raw>
-					<raw bits="160" desc="6. (Then we write the actual pubkeyhash)"></raw>
-					<raw bits="8" desc="6. (OP_EQUALVERIFY)">88</raw>
-					<raw bits="8" desc="6. (OP_CHECKSIG)">ac</raw>
-				</scriptsig>
-				<scriptsig iteration="2" desc="14. double-SHA256 hash this entire structure (from iteration 1). This will be the input to the signing.">
-					<raw bits="8" desc="17. replace the one-byte, varint length-field from step 5 with the length of the data from step 16."></raw>
-					<hex>
-						<raw bits="8" desc="16. OPCODE containing the length of the DER-encoded signature plus the one-byte hash code type"></raw>
-						<raw bits="?" desc="15. create ECDSA signature"></raw>
-						<raw bits="8" desc="16. hash code type (SIGHASH_ALL)">01</raw>
-						<raw bits="8" desc="16. OPCODE containing the length of the public key of signer"></raw>
-						<raw bits="264-520" desc="16. public key of signer"></raw>
-					</hex>
-				</scriptsig>
-				<raw bits="32" desc="7. sequence. This is currently always set to 0xffffffff">ffffffff</raw>
-			</input>
-		</inputs>
+	</txin>
+	<txout>
 		<outputs>
 			<raw bits="8" desc="8. varint containing the number of outputs in our new transaction"></raw>
-			<output>
-				<address></address>
-				<value desc="decimal value in satoshis"></value>
-				<raw bits="64" desc="9. (64 bit integer, little-endian) containing the amount we want to redeem from the specified output for this recipient address"></raw>
+			<output address="" value="" desc="(provide BTC address and decimal value in satoshis)">
+				<raw bits="64" desc="9. (64 bit integer, little-endian) amount (in satoshis) we want to redeem from the specified outputs for this recipient address"></raw>
 				<raw bits="8" desc="10. length of the output script (0x19)">19</raw>
-				<raw bits="8" desc="11. (OP_DUP)">76</raw>
-				<raw bits="8" desc="11. (OP_HASH160)">a9</raw>
-				<raw bits="8" desc="11. (push hex 0x14 bytes on stack)">14</raw>
-				<raw bits="160" desc="11. Then we write the pubkeyhash of the recipient"></raw>
-				<raw bits="8" desc="11. (OP_EQUALVERIFY)">88</raw>
-				<raw bits="8" desc="11. (OP_CHECKSIG)">ac</raw>
+				<pkscript>
+					<raw bits="8" desc="11. (OP_DUP)">76</raw>
+					<raw bits="8" desc="11. (OP_HASH160)">a9</raw>
+					<raw bits="8" desc="11. (push hex 0x14 bytes on stack)">14</raw>
+					<raw bits="160" desc="11. Then we write the pubkeyhash of the recipient"></raw>
+					<raw bits="8" desc="11. (OP_EQUALVERIFY)">88</raw>
+					<raw bits="8" desc="11. (OP_CHECKSIG)">ac</raw>
+				</pkscript>
 			</output>
 			<raw bits="32" desc="12. lock time">00000000</raw>
 			<raw iteration="1" bits="32" desc="13. Iteration 1: hash code type / Iteration 2: We finish off by removing the four-byte hash code type we added in step 13">01000000</raw>
 		</outputs>
-	</tx>
+	</txout>
+	<template>
+		<sigscript desc="14. double-SHA256 hash this entire structure (from iteration 1). This will be the input to the signing.">
+			<raw bits="8" desc="16. OPCODE containing the length of the DER-encoded signature plus the one-byte hash code type"/>
+			<raw bits="?" desc="15. create ECDSA signature"/>
+			<raw bits="8" desc="16. hash code type (SIGHASH_ALL)">01</raw>
+			<raw bits="8" desc="16. OPCODE containing the length of the public key of signer"/>
+			<raw bits="264-520" desc="16. public key of signer"/>
+		</sigscript>
+	</template>
 </txs>
