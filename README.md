@@ -208,7 +208,8 @@ However, besides the fact that we only need a _subset_ of the functionality that
 - Linux (we used an up-to-date Debian)
 - OpenSSL (we used preinstalled version 1.1.1)
 - xxd (we used the preinstalled V1.10)
-- base58 (we installed it with "sudo apt install base58")
+- base58 (is a lightweight package, we installed it with "sudo apt install base58")
+- qrencode (is a lightweight package, we installed it with "sudo apt install qrencode") 
 - xmlstarlet (we used the preinstalled version 1.6.1)
 
 <br/>
