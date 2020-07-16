@@ -3,7 +3,7 @@ Offline Bitcoin Transaction Signing - using pure __*OpenSSL*__ and _Linux_ to cr
 
 ## Intro
 
-Just as a teaser, allow us to introduce this framework in 'memento' style, going _backwards_ in time:<br/>
+Just as a _teaser_, allow us to introduce this framework in 'memento' style, going _backwards_ in time:<br/>
 At the end of the day, we were able to broadcast our manually crafted transaction into the blockchain by pasting it into blockchain.com:<br/>
 
 ![pushtx](/images/blockchain.info-pushtx.png)<br/>
@@ -164,7 +164,7 @@ Want to know more? For a detailed chronological usage example, see:
 
 Inspired by a popular [bitcoin.stackexchange.com thread](https://bitcoin.stackexchange.com/questions/32628/redeeming-a-raw-transaction-step-by-step-example-required) we wanted to understand P2PKH transactions down to the byte level.<br/>
 We soon discovered that the topic of the stackexchange thread had its functional restrictions because it only described a transaction to a _single_ output in uncompressed format.<br/>
-As an academic exercise, our goal was to create some automated _bash_ scripts that would let us parameterize _multiple_ outputs (think of change addresses for example) and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
+As an academic exercise, our goal was to create some automated _bash_ scripts that would let us parameterize __*multiple inputs and outputs*__ (think of change addresses for example) and repeat the transaction signing process without using bitcoin libraries that would abstract the inner workings of the process.<br/>
 
 ## Trust
 
