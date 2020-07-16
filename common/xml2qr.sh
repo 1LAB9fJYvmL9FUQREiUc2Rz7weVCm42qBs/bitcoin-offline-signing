@@ -20,6 +20,6 @@ xmlstarlet tr \
 	</xsl:stylesheet>') \
 | gzip \
 | base64 --wrap=0 \
-#| $dirname/qrascii.sh ${mytheme} \
+| $dirname/qrascii.sh ${mytheme} \
 
 
