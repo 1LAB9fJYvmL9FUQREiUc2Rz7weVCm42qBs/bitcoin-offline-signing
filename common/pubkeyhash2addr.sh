@@ -9,7 +9,7 @@ function appendchecksum() { hex=`cat -`; echo -n $hex; <<<$hex sha256 | sha256 |
 ####################################
 
 net=${1:-"00"}
-# add a prefix of 0x00 (BTC/MAINNET/P2PKH) or 0x05 (BTC/MAINNET/P2SH) or 0x6F (TESTNET/P2PKH) or 0x30 (LiteCoin/MAINNET/P2PKH):
+# add a prefix of 0x00 (BTC/MAINNET/P2PKH) or 0x05 (BTC/MAINNET/P2SH) or 0x6F (TESTNET/P2PKH) or 0xC4 (TESTNET/P2SH) or 0x30 (LiteCoin/MAINNET/P2PKH):
 nnhash="${net}`cat -`"
 
 # Append the checksum bytes:
