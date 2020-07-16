@@ -143,5 +143,7 @@ rawtransactionhash=`<<<$rawtransaction sha256 | sha256`
 echo "rawtransactionhash: $rawtransactionhash"
 
 cat $xml
-printf "Above you see the content of xml file: ${GREEN}${xml}${NOCOLOR}\n"
-printf "${GREEN}Copy that xml file to your OFFLINE computer (the computer where your private keys are securely stored) for transaction signing with offline/sign.sh${NOCOLOR}\n"
+cat $xml | common/xml2qr.sh dark
+printf "Above you see the content of xml file: ${GREEN}${xml}${NOCOLOR}, as text and as a QR code.\n"
+printf "${GREEN}In order to transfer the xml file, copy it using a USB drive or: scan the QR code with your OFFLINE computer and decode the result with script common/qr2xml.sh${NOCOLOR}\n"
+printf "${GREEN}Then, sign the transaction offline with the corresponding private keys and the script offline/sign.sh${NOCOLOR}\n"

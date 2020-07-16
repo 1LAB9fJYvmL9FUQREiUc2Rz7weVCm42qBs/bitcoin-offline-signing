@@ -121,6 +121,8 @@ signedtransaction=`xmlget "
 txid=`<<<$signedtransaction sha256 | sha256 | toggleendian`
 echo "txid: $txid"
 printf "signedtransaction: ${GREEN}$signedtransaction${NOCOLOR}\n"
+printf "signedtransaction QR code:\n"
+<<<$signedtransaction common/qrascii.sh dark
 printf "satoshis/byte (rounded down):${GREEN} $(( $fee / 16#$(<<<$signedtransaction hexstringlength) )) ${NOCOLOR}\n"
 printf "For ${GREEN}verification${NOCOLOR}, paste your signedtransaction into ${GREEN}https://blockchain.com/btc/decode-tx${NOCOLOR} and check if everything looks as you planned.\n"
 printf "After verification, paste your signedtransaction into ${GREEN}https://blockchain.com/btc/pushtx${NOCOLOR} to ${GREEN}broadcast${NOCOLOR} it.\n"
